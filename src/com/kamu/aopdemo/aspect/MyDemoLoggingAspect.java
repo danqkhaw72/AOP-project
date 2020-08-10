@@ -13,7 +13,7 @@ public class MyDemoLoggingAspect {
 	// let's start with an @Before advice
 	
 	// @Before("execution(public void com.kamu.aopdemo.dao.AccountDAO.addAccount())")
-	@Before("execution(public void add*())")
+	@Before("execution(* add*())")
 	public void beforeAddAccountAdvice() {
 		
 		System.out.println("\n=======>>> Excuting @Before advice on addAcount()");
