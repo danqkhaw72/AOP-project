@@ -24,6 +24,12 @@ public class MainDemoApp {
 		theAccountDAO.addAccount(myAccount, true);
 		theAccountDAO.doWork();
 		
+		theAccountDAO.setName("Dolly");
+		theAccountDAO.setServiceCode("sivel");
+		
+		String name = theAccountDAO.getName();
+		String code = theAccountDAO.getServiceCode();
+		
 		System.out.println("------------------------------");
 		
 		// call the membership method
