@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -14,6 +15,21 @@ import com.kamu.aopdemo.Account;
 @Aspect
 @Component
 public class MyDemoLoggingAspect {
+	
+	@AfterThrowing(
+			pointcut = "execution(* com.kamu.aopdemo.dao.AccountDAO.findAccount(..))",
+			throwing = "exception")
+	public void afterThrowingFindAccountsAdvice(
+			JoinPoint theJoinPoint, Throwable exception) {
+		
+		// print out which method we are advising on
+		String method = theJoinPoint.getSignature().toShortString();
+		System.out.println("\n====>>> Excuting @AfterThrowing on method: " + method);
+		
+		// log the exception
+		System.out.println("\nThrow Exception: "+ exception);
+		
+	}
 	
 	// add a new advice for @AfterReturning on the findAccounts method
 	@AfterReturning(
